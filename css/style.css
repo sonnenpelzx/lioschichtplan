@@ -1,0 +1,36 @@
+.schicht{
+    background-color: red;
+}
+th:nth-child(3){
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-style: solid;
+    border-color: white;
+    border-top-style: none;
+    border-bottom-style: none;
+}
+td:nth-child(3){
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-style: solid;
+    border-color: white;
+    border-top-style: none;
+    border-bottom-style: none;
+}
+td{
+    border-left: 1px solid;
+    border-right: 1px solid;
+}
+.weekday{
+    width: 80px;
+}
+td{
+    text-align: right;
+}
+table {
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+th{
+    padding-bottom: 10px;
+}
