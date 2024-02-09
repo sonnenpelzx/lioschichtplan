@@ -59,6 +59,8 @@ function clearTable(){
         const row = plan.rows[i]
         for(let j = 1; j < 9; j++){
             const cell = row.cells[j]
+            cell.style.display = "table-cell"
+            cell.rowSpan = "1"
             cell.classList.remove("schicht")
         }
     }
@@ -74,24 +76,33 @@ function showSchicht(){
         const begin = schichtBedeutung[schichtTyp.value][schicht].begin + 1;
         const end = schichtBedeutung[schichtTyp.value][schicht].end + 1;
         if(schicht === 'n'){
-            for(let i = begin; i <= 25; i++){
+            plan.rows[begin].cells[offset + 2].rowSpan = `${25 - begin + 1}`
+            plan.rows[begin].cells[offset + 2].classList.add("schicht")
+            for(let i = begin + 1; i <= 25; i++){
                 const row = plan.rows[i];
-                const cell = row.cells[offset + 2];
-                cell.classList.add("schicht");
+                console.log(`row: ${i}, cell ${offset + 2}`)
+                console.log(row)
+                row.cells[offset + 2].style.display = 'none';
             }
             if(offset < 6){
-                for(let i = 1; i <= end; i++){
+                plan.rows[1].cells[offset + 3].rowSpan = `${end}`
+                plan.rows[1].cells[offset + 3].classList.add("schicht")
+                for(let i = 2; i <= end; i++){
                     const row = plan.rows[i];
-                    const cell = row.cells[offset + 3];
-                    cell.classList.add("schicht");
+                    console.log(`row: ${i}, cell ${offset + 3}`)
+                    console.log(row)
+                    row.cells[offset + 2].style.display = 'none';
                 }
             }
         }
         else{
-            for(let i = begin; i <= end; i++){
+            plan.rows[begin].cells[offset + 2].rowSpan = `${end - begin + 1}`
+            plan.rows[begin].cells[offset + 2].classList.add("schicht")
+            for(let i = begin + 1 ; i <= end; i++){
                 const row = plan.rows[i];
-                const cell = row.cells[offset + 2];
-                cell.classList.add("schicht");
+                console.log(`row: ${i}, cell ${offset + 2}`)
+                console.log(row)
+                row.cells[offset + 2].style.display = 'none';
             }
         }
     }   
