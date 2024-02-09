@@ -67,6 +67,8 @@ function rangeChange(){
 function vergleichSchichten(){
     for(let i = -1; i < tableSize; i++){
         plan.rows[0].cells[i + 2].classList.remove("vergleich");
+        plan.rows[0].cells[i + 2].classList.remove("vergleichZocken");
+        plan.rows[0].cells[i + 2].classList.remove("vergleichTreffen");
     }
     if(vergleich.value === 'x'){
         return;
@@ -74,6 +76,12 @@ function vergleichSchichten(){
     for(let offset = -1; offset < tableSize; offset++){
         if(getSchicht(schichtAblauf, offset, vergleich.value) === '-' && getSchicht(schichtAblauf, offset, auswahl.value) === '-' && getSchicht(schichtAblauf, offset -1, auswahl.value) != 'n' && getSchicht(schichtAblauf, offset -1, auswahl.value) != 'n'){
             plan.rows[0].cells[offset + 2].classList.add("vergleich");
+        }
+        else if((getSchicht(schichtAblauf, offset, vergleich.value) === 'f' && getSchicht(schichtAblauf, offset, auswahl.value) === '-') || (getSchicht(schichtAblauf, offset, vergleich.value) === '-' && getSchicht(schichtAblauf, offset, auswahl.value) === 'f') || (getSchicht(schichtAblauf, offset, vergleich.value) === 's' && getSchicht(schichtAblauf, offset, auswahl.value) === '-') || (getSchicht(schichtAblauf, offset, vergleich.value) === '-' && getSchicht(schichtAblauf, offset, auswahl.value) === 's')){
+            plan.rows[0].cells[offset + 2].classList.add("vergleichZocken");
+        }
+        else if(getSchicht(schichtAblauf, offset, vergleich.value) === '-' || getSchicht(schichtAblauf, offset, auswahl.value) === '-'){
+            plan.rows[0].cells[offset + 2].classList.add("vergleichTreffen");
         }
     }
 }
